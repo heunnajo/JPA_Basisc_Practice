@@ -2,6 +2,7 @@ package jpashop.jpabook;
 
 import jpashop.jpabook.domain.Member;
 import jpashop.jpabook.domain.Order;
+import jpashop.jpabook.domain.OrderItem;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,13 +18,9 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        try {//현재의 설계로 member에 접근하는 것.
-            Order order = em.find(Order.class, 1L);
-            Long memberId = order.getMemberId();
-
-            //Member member1 = order.getMember();//OOP는 이렇게 해서 바로 member를 꺼낼 수 잇어야함.
-
-            Member member = em.find(Member.class, memberId);
+        try {
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
             tx.commit();
         } catch (Exception e){
             tx.rollback();
