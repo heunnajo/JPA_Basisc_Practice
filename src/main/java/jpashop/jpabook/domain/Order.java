@@ -24,6 +24,11 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    @OneToOne
+    @JoinColumn(name="DELIVERY_ID")
+//    @JoinColumn(name="order") mappedBy가 값이 상대 테이블 필드 변수명이고,
+//    주테이블 입장에서는 매핑하는 엔티티의 ID로 @JoinColumn
+    private Delivery delivery;
 
     public void addOrderItem(OrderItem orderItem){//연관관계 편의메서드
         orderItems.add(orderItem);
