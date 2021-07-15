@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 public class Category extends BaseEntity  {
     @Id
@@ -13,7 +15,8 @@ public class Category extends BaseEntity  {
 
     private String name;
 
-    @ManyToOne//셀프 매핑 가능 : 자식 입장에서 부모 하나
+    //셀프 매핑 가능 : 자식 입장에서 부모 하나
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name="PARENT_ID")
     private Category parent;
 
